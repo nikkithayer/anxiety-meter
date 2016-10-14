@@ -16,6 +16,7 @@
 				
 
 				var firstQuestion = true;
+				
 				showNewQuestion();
 				$('input:text:visible:first')[0].focus();
 
@@ -27,22 +28,22 @@
 						prompt = promptText[0];
 					}
 					var newContent = "<h1>"+prompt+"</h1><input type='text' />";
-					$(newContent).hide().appendTo(".inner").fadeIn(fadeInSpeed);
+					fadeInNewContent(newContent, ".inner");
 					if(!firstQuestion){
 						newContent = "<button class='completedQuestions'>"+btnCompletionText+"</button>";
-						$(newContent).hide().appendTo(".inner").fadeIn(fadeInSpeed);
+						fadeInNewContent(newContent, ".inner");
 					}
 					firstQuestion = false;
 				}
 				
 				function showPainList(){
 					var newContent = "<h1>"+painText+"</h1><div class='pain-list'>";
-					$(newContent).hide().appendTo(".inner").fadeIn(fadeInSpeed);
+					fadeInNewContent(newContent, ".inner");
 					var nextContent = "";
 					for(i = 1; i < 7; i++){
 						nextContent += "<div class='pain-"+i+"'></div>";
 					}
-					$(nextContent).hide().appendTo(".pain-list:last-child").fadeIn(fadeInSpeed);
+					fadeInNewContent(nextContent, ".pain-list:last-child");
 					$(".inner").append("</div>");
 				}
 				
@@ -64,11 +65,21 @@
 					    combinedAnswers.push(hash);
 					}					
 					console.log(combinedAnswers);
+					$(".inner").children().addClass("invisible");
+				}
+				
+				function fadeInNewContent(newContent, destination){
+					$(newContent).hide().appendTo(destination).fadeIn(fadeInSpeed);
+					var newPos = $(".inner").children().last().offset().top;
+					console.log($(".inner").children().last().height());
+						$('html, body').animate({
+							scrollTop: newPos-200
+						}, 1500, "linear");
 				}
 				
 //button should appear when current input field isn't empty, rather than when you focus out
 				$(document).on('focus', 'input:text', function(){
-					$(".completedQuestions").fadeOut(fadeInSpeed);
+					$(".completedQuestions").addClass("invisible");
 				});
 
 				$(document).on('focusout', 'input:text', function(){
@@ -89,23 +100,12 @@
 					return this[Math.floor(Math.random() * this.length)]
 				}
 			
-// after any text is entered in the input, the button fades in
 // pressing the button fades in the measurement text and positions it at the top of the screen
 // pressing any mood shows a selected state
 // pressing any mood fades in the button with the option to add more or be done
 // all results are listed
 // when you load the page, it's automatically focused on the input field on mobile
 
-
-/*
-				var backgrounds = ["#fff", "#f023a8", "#ebd800", "#ecbc04", "#ef8b00", "#2232c7", "#9a0da5", "#19b7e8"];
-				$("a").hover(function(){
-					$("body").css({"backgroundColor":backgrounds[getRandom(0, backgrounds.length)]});
-				});
-			function getRandom(min, max) {
-				return Math.floor(Math.random() * (max - min)) + min;
-			}
-*/
 			});
 
 	</script>
@@ -117,10 +117,20 @@
 				font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 				font-weight: 200;
 			}
+			body:after{
+				width: 100%;
+				height: 10vh;
+				position: fixed;
+				background: linear-gradient(0deg, rgba(234, 255, 254, 0), rgba(234, 255, 254, 1));
+				top: 0;
+				left: 0;
+				content: "";
+			}
 			.inner{
 				max-width: 600px;
 				display: block;
 				margin: 0 auto;
+				padding-bottom: 100vh;
 			}
 			
 			h1{
@@ -154,6 +164,10 @@
 				margin: 5vh 0;
 				padding: 2vh;
 			}
+			.invisible{
+				opacity: 0;
+				transition: all 500ms ease-out;
+			}
 			
 			.pain-list{
 				display: flex;
@@ -161,11 +175,15 @@
 			}
 			
 			.pain-list div{
-				width: 75px;
-				height: 75px;
+				width: 65px;
+				height: 65px;
 				border-radius: 100%;
 				display: inline-block;
 				margin-bottom: 15px;
+			}
+			.pain-list div:hover{
+				transform: scale(1.2);
+				transition: all 400ms ease-in-out;
 			}
 			
 			.pain-6{ background-color: #19B7E8;}
