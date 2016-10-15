@@ -59,6 +59,7 @@
 				}
 				
 				function computeResult(){
+/*
 					var combinedAnswers = []; 
 					for(i = 0; i < pain.length; i++) {
 					    var hash = {};
@@ -66,12 +67,20 @@
 					    combinedAnswers.push(hash);
 					}					
 					console.log(combinedAnswers);
-//answers are sorted by worst to best
-					$.each( obj, function( key, value ) {
-						alert( key + ": " + value );
+
+					$.each( combinedAnswers, function( key, value ) {
+						console.log( key + ": " + value );
 					});
 
+*/
+//answers are sorted by worst to best
 					$(".inner").children().addClass("invisible");
+
+					for(i=0;i<pain.length;i++){
+						var newContent = "<div class='result-holder'><div class='pain pain-"+pain[i]+"'></div><div>"+answers[i]+"</div></div>";
+						fadeInNewContent(newContent, ".inner");
+					}
+
 				}
 				
 				function fadeInNewContent(newContent, destination){
@@ -120,7 +129,7 @@
 				background-color: #fff;
 				font-size: 16px;
 				font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-				font-weight: 200;
+				font-weight: 500;
 			}
 			body:after{
 				width: 100%;
@@ -142,6 +151,7 @@
 				font-size: 2em;
 				color: #000;	
 				margin: 10vh 0;
+				font-weight: 500;
 				display: block;
 			}
 			
@@ -149,7 +159,7 @@
 				width: 100%;
 				border: none;
 				background-color: transparent;
-				border-bottom: 1px solid #000;
+				border-bottom: 2px solid #000;
 				font-size: 1.3em;
 				color: #000;
 				font-weight: 300;
@@ -163,8 +173,7 @@
 				background-color: #12E1AE;
 				color: #fff;
 				font-size: 1em;
-				font-weight: 200;
-				letter-spacing: 1.125px;
+				font-weight: 500;
 				border: none;
 				margin: 5vh 0;
 				padding: 2vh;
@@ -197,6 +206,20 @@
 			.pain-4{ background: #FFA01D url(images/pain-4.svg) no-repeat center center;}
 			.pain-5{ background: #FF740C url(images/pain-5.svg) no-repeat center center;}
 			.pain-6{ background: #E80A0A url(images/pain-6.svg) no-repeat center center;}
+			
+			.result-holder{
+				display: table;
+				border-spacing: 10px;
+			}
+			.result-holder div{
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.result-holder .pain{
+				width: 65px;
+				height: 65px;
+				border-radius: 100%;
+			}
 		</style>
 	</head>
 	<body>
