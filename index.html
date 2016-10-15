@@ -83,8 +83,10 @@
 				});
 
 				$(document).on('focusout', 'input:text', function(){
-					answers.push($(this).val());
-					showPainList();
+					if($(this).val()!=""){
+						answers.push($(this).val());
+						showPainList();
+					}
 				});
 				
 				$(document).on('click', '.completedQuestions', function(){
