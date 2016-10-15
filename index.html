@@ -6,7 +6,7 @@
 	    
 			$( document ).ready(function() {								
 				var fadeInSpeed = 750;
-				var promptText = ["What's worrying you?", "Anything else?"];
+				var promptText = ["What's making you anxious?", "Anything else?"];
 				var btnText = ["Okay.", "I'm sorry to hear that.", "Got it.", "I hear you."];
 				var btnCompletionText = "No, I'm done.";
 				var painText = "How bad is it?";
@@ -16,6 +16,7 @@
 				
 
 				var firstQuestion = true;
+				var posOffset = -500;
 				
 				showNewQuestion();
 				$('input:text:visible:first')[0].focus();
@@ -71,10 +72,9 @@
 				function fadeInNewContent(newContent, destination){
 					$(newContent).hide().appendTo(destination).fadeIn(fadeInSpeed);
 					var newPos = $(".inner").children().last().offset().top;
-					console.log($(".inner").children().last().height());
 						$('html, body').animate({
-							scrollTop: newPos-200
-						}, 1500, "linear");
+							scrollTop: newPos+posOffset
+						}, 800, "linear");
 				}
 				
 //button should appear when current input field isn't empty, rather than when you focus out
@@ -186,12 +186,12 @@
 				transition: all 400ms ease-in-out;
 			}
 			
-			.pain-6{ background-color: #19B7E8;}
-			.pain-5{ background-color: #12E1AE;}
-			.pain-4{ background-color: #EBD800;}
-			.pain-3{ background-color: #FFA01D;}
-			.pain-2{ background-color: #FF740C;}
-			.pain-1{ background-color: #E80A0A;}
+			.pain-1{ background: #19B7E8 url(images/pain-1.svg) no-repeat center center;}
+			.pain-2{ background: #12E1AE url(images/pain-2.svg) no-repeat center center;}
+			.pain-3{ background: #EBD800 url(images/pain-3.svg) no-repeat center center;}
+			.pain-4{ background: #FFA01D url(images/pain-4.svg) no-repeat center center;}
+			.pain-5{ background: #FF740C url(images/pain-5.svg) no-repeat center center;}
+			.pain-6{ background: #E80A0A url(images/pain-6.svg) no-repeat center center;}
 		</style>
 	</head>
 	<body>
