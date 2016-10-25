@@ -1,0 +1,95 @@
+body{
+	background-color: #fff;
+	font-size: 16px;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-weight: 500;
+	&:after{
+		width: 100%;
+		height: 10vh;
+		position: fixed;
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+		top: 0;
+		left: 0;
+		content: "";
+	}
+}
+.inner{
+	max-width: 600px;
+	display: block;
+	margin: 0 auto;
+	padding-bottom: 100vh;
+}
+
+h1{
+	font-size: 2em;
+	color: #000;	
+	margin: 10vh 0;
+	font-weight: 500;
+	display: block;
+}
+
+input[type="text"]{
+	width: 100%;
+	border: none;
+	background-color: transparent;
+	border-bottom: 2px solid #000;
+	font-size: 1.3em;
+	color: #000;
+	font-weight: 300;
+	&:focus{
+		outline: none;
+	}
+}
+
+button{
+	width: 40%;
+	background-color: #12E1AE;
+	color: #fff;
+	font-size: 1em;
+	font-weight: 500;
+	border: none;
+	margin: 5vh 0;
+	padding: 2vh;
+}
+.invisible{
+	opacity: 0;
+	transition: all 500ms ease-out;
+}
+
+.pain-list{
+	display: flex;
+	justify-content: space-around;
+	div{
+		width: 65px;
+		height: 65px;
+		border-radius: 100%;
+		display: inline-block;
+		margin-bottom: 15px;
+		&:hover{
+			transform: scale(1.2);
+			transition: all 400ms ease-in-out;
+		}
+	}
+}
+
+
+.pain-1{ background: #19B7E8 url(../images/pain-1.svg) no-repeat center center;}
+.pain-2{ background: #12E1AE url(../images/pain-2.svg) no-repeat center center;}
+.pain-3{ background: #EBD800 url(../images/pain-3.svg) no-repeat center center;}
+.pain-4{ background: #FFA01D url(../images/pain-4.svg) no-repeat center center;}
+.pain-5{ background: #FF740C url(../images/pain-5.svg) no-repeat center center;}
+.pain-6{ background: #E80A0A url(../images/pain-6.svg) no-repeat center center;}
+
+.result-holder{
+	display: table;
+	border-spacing: 10px;
+	div{
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.pain{
+		width: 65px;
+		height: 65px;
+		border-radius: 100%;
+	}
+}

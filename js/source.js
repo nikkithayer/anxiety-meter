@@ -1,6 +1,6 @@
 $( document ).ready(function() {								
 	var fadeInSpeed = 750;
-	var promptText = ["What's making you anxious?", "Anything else?"];
+	var promptText = ["What's on your mind?", "Anything else?"];
 	var btnText = ["Okay.", "I'm sorry to hear that.", "Got it.", "I hear you."];
 	var btnCompletionText = "No, I'm done.";
 	var painText = "How bad is it?";
