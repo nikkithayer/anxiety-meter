@@ -4,6 +4,7 @@ $( document ).ready(function() {
 	var btnText = ["Okay.", "I'm sorry to hear that.", "Got it.", "I hear you."];
 	var btnCompletionText = "No, I'm done.";
 	var painText = "How bad is it?";
+	var currentFieldBlank = true;
 									
 	var answers = [];
 	var pain = [];
@@ -29,6 +30,7 @@ $( document ).ready(function() {
 			fadeInNewContent(newContent, ".inner");
 		}
 		firstQuestion = false;
+		currentFieldBlank = true;
 	}
 	
 	function showPainList(){
@@ -90,12 +92,23 @@ $( document ).ready(function() {
 		$(".completedQuestions").addClass("invisible");
 	});
 
-	$(document).on('focusout', 'input:text', function(){
-		if($(this).val()!=""){
-			answers.push($(this).val());
-			showPainList();
+	$(document).on('keypress', 'input:text', function(e){
+		if(e.which == 13){
+			checkIfBlank($(this).val());
 		}
 	});
+
+	$(document).on('focusout', 'input:text', function(){
+		checkIfBlank($(this).val());
+	});
+
+	function checkIfBlank(fieldVal){
+		if(fieldVal!="" && currentFieldBlank == true){
+			answers.push(fieldVal);
+			showPainList();
+			currentFieldBlank = false;
+		}		
+	}
 	
 	$(document).on('click', '.completedQuestions', function(){
 		computeResult();
